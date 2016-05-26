@@ -113,7 +113,7 @@ function! s:LogAgda(name, text, append)
 endfunction
 
 
-exec s:python_until_eof
+python << EOF
 import vim
 import re
 import subprocess
@@ -311,14 +311,14 @@ def getWordAtCursor():
 EOF
 
 function! AgdaVersion(quiet)
-exec s:python_until_eof
+python << EOF
 import vim
 sendCommand('Cmd_show_version', quiet = int(vim.eval('a:quiet')) == 1)
 EOF
 endfunction
 
 function! Load(quiet)
-exec s:python_until_eof
+python << EOF
 import vim
 f = vim.current.buffer.name
 sendCommandLoad(f, int(vim.eval('a:quiet')) == 1)
@@ -326,7 +326,7 @@ EOF
 endfunction
 
 function! Give()
-exec s:python_until_eof
+python << EOF
 import vim
 result = getHoleBodyAtCursor()
 if result is None:
@@ -341,7 +341,7 @@ EOF
 endfunction
 
 function! MakeCase()
-exec s:python_until_eof
+python << EOF
 import vim
 result = getHoleBodyAtCursor()
 if result is None:
@@ -356,7 +356,7 @@ EOF
 endfunction
 
 function! Refine(unfoldAbstract)
-exec s:python_until_eof
+python << EOF
 import vim
 result = getHoleBodyAtCursor()
 if result is None:
@@ -369,7 +369,7 @@ EOF
 endfunction
 
 function! Auto()
-exec s:python_until_eof
+python << EOF
 import vim
 result = getHoleBodyAtCursor()
 if result is None:
@@ -382,7 +382,7 @@ EOF
 endfunction
 
 function! Context()
-exec s:python_until_eof
+python << EOF
 import vim
 result = getHoleBodyAtCursor()
 if result is None:
@@ -395,7 +395,7 @@ EOF
 endfunction
 
 function! Infer()
-exec s:python_until_eof
+python << EOF
 import vim
 result = getHoleBodyAtCursor()
 if result is None:
@@ -408,7 +408,7 @@ EOF
 endfunction
 
 function! Normalize(unfoldAbstract)
-exec s:python_until_eof
+python << EOF
 import vim
 result = getHoleBodyAtCursor()
 if result is None:
@@ -421,7 +421,7 @@ EOF
 endfunction
 
 function! WhyInScope(term)
-exec s:python_until_eof
+python << EOF
 
 termName = vim.eval('a:term')
 result = getHoleBodyAtCursor() if termName == '' else None
@@ -438,7 +438,7 @@ EOF
 endfunction
 
 function! ShowModule(module)
-exec s:python_until_eof
+python << EOF
 
 moduleName = vim.eval('a:module')
 result = getHoleBodyAtCursor() if moduleName == '' else None
